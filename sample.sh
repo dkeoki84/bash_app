@@ -139,9 +139,18 @@ step_2() {
 step_3() {
     printf "\n--- step 3 ---\n"
 
-    RET=`ls`
-    echo ${RET}
-    printf "\n--------------\n"
+    COMMANDS=(
+        "ls"
+        "ls -la"
+        "whoami"
+        "df -h"
+        "du -h"
+    )
+    for idx in "${!COMMANDS[@]}"; do
+        echo "executing - ${COMMANDS[$idx]}"
+        ${COMMANDS[$idx]}
+        printf "\n--------------\n"
+    done
 
     ((COUNTER++))
 }
